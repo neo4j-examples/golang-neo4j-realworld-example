@@ -13,7 +13,7 @@ import (
 type FakeUserRepository struct {
 }
 
-func (FakeUserRepository) RegisterUser(user users.User) error {
+func (FakeUserRepository) RegisterUser(user *users.User) error {
 	return nil
 }
 
