@@ -56,7 +56,7 @@ var _ = Describe("User repository", func() {
 		session, _ := driver.NewSession(neo4j.SessionConfig{})
 		defer Close(session, "Session")
 		result, err := session.
-			WriteTransaction(func(tx neo4j.Transaction) (interface{}, error) {
+			ReadTransaction(func(tx neo4j.Transaction) (interface{}, error) {
 				res, err := tx.Run("MATCH (u:User {username: $username, email: $email}) "+
 					"RETURN u.username AS username, u.email AS email, u.password AS password",
 					map[string]interface{}{

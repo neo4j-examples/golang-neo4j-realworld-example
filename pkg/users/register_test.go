@@ -17,6 +17,13 @@ func (FakeUserRepository) RegisterUser(user *users.User) error {
 	return nil
 }
 
+func (FakeUserRepository) FindByEmailAndPassword(email, password string) (*users.User, error) {
+	return &users.User{
+		Username: "flo",
+		Email:    email,
+	}, nil
+}
+
 var _ = Describe("Users", func() {
 
 	var userRequest = users.UserRegistration{
@@ -33,7 +40,7 @@ var _ = Describe("Users", func() {
 		}}
 
 	It("should register", func() {
-		handler := users.UserHandler{
+		handler := users.UserRegistrationHandler{
 			Path:           "/users",
 			UserRepository: &FakeUserRepository{},
 		}
@@ -41,23 +48,23 @@ var _ = Describe("Users", func() {
 
 		handler.Register(
 			testResponseWriter,
-			httptest.NewRequest("POST", "/users", strings.NewReader(marshal(userRequest))))
+			httptest.NewRequest("POST", "/users", strings.NewReader(marshalRegistration(userRequest))))
 
 		Expect(testResponseWriter.Code).To(Equal(201))
-		Expect(unmarshal(testResponseWriter.Body)).To(Equal(expectedUserResponse))
+		Expect(unmarshalRegistration(testResponseWriter.Body)).To(Equal(expectedUserResponse))
 	})
 
 })
 
-func marshal(registration users.UserRegistration) string {
+func marshalRegistration(registration users.UserRegistration) string {
 	payload, err := json.Marshal(registration)
 	Expect(err).To(BeNil(), "JSON marshalling should work")
 	return string(payload)
 }
 
-func unmarshal(payload *bytes.Buffer) users.UserRegistration {
+func unmarshalRegistration(payload *bytes.Buffer) *users.UserRegistration {
 	var result users.UserRegistration
 	err := json.Unmarshal(payload.Bytes(), &result)
 	Expect(err).To(BeNil(), "JSON unmarshalling should work")
-	return result
+	return &result
 }

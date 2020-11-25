@@ -20,7 +20,7 @@ func main() {
 	if !found {
 		panic("NEO4J_PASSWORD not set")
 	}
-	var userHandler = &users.UserHandler{
+	var userHandler = &users.UserRegistrationHandler{
 		Path: "/users",
 		UserRepository: &users.UserNeo4jRepository{
 			Driver: driver(neo4jUri, neo4j.BasicAuth(neo4jUsername, neo4jPassword, "")),

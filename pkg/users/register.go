@@ -20,12 +20,12 @@ type User struct {
 	Password string `json:"password,omitempty"`
 }
 
-type UserHandler struct {
+type UserRegistrationHandler struct {
 	Path           string
 	UserRepository UserRepository
 }
 
-func (u *UserHandler) Register(writer http.ResponseWriter, request *http.Request) {
+func (u *UserRegistrationHandler) Register(writer http.ResponseWriter, request *http.Request) {
 	requestBody, _ := ioutil.ReadAll(request.Body)
 	userRegistrationRequest := UserRegistration{}
 	_ = json.Unmarshal(requestBody, &userRegistrationRequest)

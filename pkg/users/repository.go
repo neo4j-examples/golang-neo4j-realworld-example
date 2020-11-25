@@ -7,6 +7,7 @@ import (
 
 type UserRepository interface {
 	RegisterUser(user *User) error
+	FindByEmailAndPassword(email string, password string) (*User, error)
 }
 
 type UserNeo4jRepository struct {
