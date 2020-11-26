@@ -18,7 +18,7 @@ var _ = Describe("Users", func() {
 		},
 	}
 
-	FIt("should log in", func() {
+	It("should log in", func() {
 		handler := users.UserLoginHandler{
 			Path:           "/users/login",
 			UserRepository: &FakeUserRepository{},

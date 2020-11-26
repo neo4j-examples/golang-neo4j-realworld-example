@@ -2,8 +2,11 @@ package users
 
 import (
 	"encoding/json"
+	"github.com/dgrijalva/jwt-go"
 	"io/ioutil"
 	"net/http"
+	"os"
+	"time"
 )
 
 type UserLogin struct {
@@ -30,7 +33,7 @@ func (u *UserLoginHandler) Login(writer http.ResponseWriter, request *http.Reque
 		requestUser.Email,
 		requestUser.Password)
 
-	var token string // ???
+	token, _ := CreateToken(user)
 	loggedInUser := &LoggedInUser{
 		Username: user.Username,
 		Email:    user.Email,
@@ -39,4 +42,13 @@ func (u *UserLoginHandler) Login(writer http.ResponseWriter, request *http.Reque
 	writer.WriteHeader(200)
 	bytes, _ := json.Marshal(&loggedInUser)
 	_, _ = writer.Write(bytes)
+}
+
+func CreateToken(user *User) (string, error) {
+	claims := jwt.MapClaims{}
+	claims["authorized"] = true
+	claims["user_id"] = user.Username
+	claims["exp"] = time.Now().Add(time.Minute * 15).Unix()
+	token := jwt.NewWithClaims(jwt.SigningMethodHS512, claims)
+	return token.SignedString([]byte(os.Getenv("SECRET_ACCESS")))
 }

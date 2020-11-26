@@ -33,6 +33,10 @@ func (u *UserNeo4jRepository) RegisterUser(user *User) (err error) {
 	return nil
 }
 
+func (u *UserNeo4jRepository) FindByEmailAndPassword(email string, password string) (*User, error) {
+	panic("implement me")
+}
+
 func (u *UserNeo4jRepository) persistUser(tx neo4j.Transaction, user *User) (interface{}, error) {
 	query := "CREATE (:User {email: $email, username: $username, password: $password})"
 	hashedPassword, err := hash(user.Password)

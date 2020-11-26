@@ -51,7 +51,7 @@ var _ = Describe("Users", func() {
 			httptest.NewRequest("POST", "/users", strings.NewReader(marshalRegistration(userRequest))))
 
 		Expect(testResponseWriter.Code).To(Equal(201))
-		Expect(unmarshalRegistration(testResponseWriter.Body)).To(Equal(expectedUserResponse))
+		Expect(unmarshalRegistration(testResponseWriter.Body)).To(Equal(&expectedUserResponse))
 	})
 
 })
