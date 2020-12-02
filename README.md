@@ -1,5 +1,7 @@
 # ![RealWorld Example App](project-logo.png)
 
+![CI](https://github.com/neo4j-examples/golang-neo4j-realworld-example/workflows/Go/badge.svg)
+
 > ### Neo4j & Golang (using the Neo4j driver) codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
 
 ## Prerequisites
