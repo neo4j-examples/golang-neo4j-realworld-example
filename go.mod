@@ -4,7 +4,7 @@ go 1.15
 
 require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
-	github.com/neo4j/neo4j-go-driver/v4 v4.3.3
+	github.com/neo4j/neo4j-go-driver/v4 v4.4.0
 	github.com/onsi/ginkgo v1.16.5
 	github.com/onsi/gomega v1.16.0
 	github.com/testcontainers/testcontainers-go v0.11.1
