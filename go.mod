@@ -7,6 +7,6 @@ require (
 	github.com/neo4j/neo4j-go-driver/v4 v4.4.4
 	github.com/onsi/ginkgo v1.16.5
 	github.com/onsi/gomega v1.24.1
-	github.com/testcontainers/testcontainers-go v0.14.0
+	github.com/testcontainers/testcontainers-go v0.15.0
 	golang.org/x/crypto v0.1.0
 )
