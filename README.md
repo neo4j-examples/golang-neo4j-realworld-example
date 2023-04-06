@@ -18,7 +18,7 @@ go build ./cmd/conduit
 
 ## Run
 
-First, make sure to configure the application to target your specific Neo4j instance.
+make sure to configure the application to target your specific Neo4j instance.
 All settings are mandatory.
 
 | Environment variable  | Description |
@@ -27,12 +27,7 @@ All settings are mandatory.
 | NEO4J_USERNAME        | Username of the account to connect with (must have read & write permissions) |
 | NEO4J_PASSWORD        | Password of the account to connect with (must have read & write permissions)|
 
-Then, just execute:
-```
-./conduit
-```
-
-You can also skip the build command and directly execute:
+> configure in .zshrc 
 
 ```
 go run ./cmd/conduit/
